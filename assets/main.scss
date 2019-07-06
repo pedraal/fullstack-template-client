@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+
+/* Nav customization */
+$navbar-background-color: #2c2c2c;
+$navbar-dropdown-background-color: #2c2c2c;
+$navbar-item-color: #dbdbdb;
+$navbar-item-hover-color: #555;
+$navbar-item-active-color: hsl(348, 100%, 61%);
+$navbar-item-active-background-color: white;
+
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/bulma";
+
+.hasnavtop {
+  padding-top: $navbar-height;
+}
+
+.shadowbox {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.is-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.5s;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
