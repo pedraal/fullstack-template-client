@@ -109,7 +109,6 @@ export default {
       }
     });
     response.data.events.forEach(event => {
-      event.thumbnail.url = `${apiUrl}${event.thumbnail.url}`;
       store.commit("events/add", {
         id: event.id,
         ...event
