@@ -85,8 +85,6 @@ export default {
           `
       }
     });
-    response.data.publication.image.url = `${apiUrl}${response.data.publication.image.url}`;
-
     store.commit("publication/select", {
       id: response.data.publication.id,
       ...response.data.publication
