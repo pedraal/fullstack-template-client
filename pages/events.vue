@@ -33,7 +33,9 @@
                   </span>
                   {{event.date | HourMinuteFormatFr}}
                 </p>
-                <p class="content has-text-justified">{{event.description}}</p>
+                <no-ssr>
+                  <VueShowdown :markdown="event.description" class="content has-text-justified" />
+                </no-ssr>
 
                 <p class="has-text-centered">
                   <button class="button is-danger is-inverted" @click="attempt">Participer</button>

@@ -23,7 +23,7 @@
 
       <div id="myNavbar" class="navbar-menu" :class="{'is-active': isActive}">
         <div class="navbar-start">
-          <nuxt-link tag="a" class="navbar-item" to="/" active-class="is-active" exact>Acceuil</nuxt-link>
+          <nuxt-link tag="a" class="navbar-item" to="/" active-class="is-active" exact>Accueil</nuxt-link>
           <nuxt-link
             tag="a"
             class="navbar-item"

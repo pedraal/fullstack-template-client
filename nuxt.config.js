@@ -63,6 +63,7 @@ module.exports = {
     "~plugins/filter.js",
     { src: "@/plugins/aos", mode: "client" },
     { src: "@/plugins/mapbox", mode: "client" },
+    { src: "@/plugins/showdown", mode: "client" },
     { src: "@/plugins/validator", mode: "client" }
   ],
   modules: ["@nuxtjs/toast"],
