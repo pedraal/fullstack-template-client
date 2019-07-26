@@ -19,19 +19,10 @@
                   <strong>{{publication.title}}</strong>
                   <br />
                   <small>
-                    <span class="tag is-danger">{{publication.type}}</span>
+                    <span class="tag is-danger">{{publication.publicationtype.type}}</span>
                     by {{publication.author}}
                   </small>
                 </p>
-              </div>
-              <br />
-              <div class="level-right">
-                <div class="tags has-addons" @click="fav">
-                  <span class="tag icon">
-                    <i class="far fa-star"></i>
-                  </span>
-                  <span class="tag is-warning">Ajouter à mes favoris</span>
-                </div>
               </div>
             </div>
             <div class="content has-text-justified">
@@ -41,7 +32,7 @@
                 <nuxt-link
                   tag="a"
                   class="is-size-6"
-                  :to="{ name: 'publication-id', params: { id: publication.id }}"
+                  :to="{ name: 'publications-id', params: { id: publication.id }}"
                 >Lire plus...</nuxt-link>
               </p>
             </div>
@@ -72,7 +63,7 @@
                   <nuxt-link
                     tag="a"
                     class="is-size-7"
-                    :to="{ name: 'publication-id', params: { id: publication.id }}"
+                    :to="{ name: 'publications-id', params: { id: publication.id }}"
                   >{{publication.title}}</nuxt-link>
                 </li>
               </ul>

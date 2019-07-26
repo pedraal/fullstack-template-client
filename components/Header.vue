@@ -38,20 +38,20 @@
         <div class="navbar-end">
           <div class="navbar-item" v-if="!username">
             <div class="buttons">
-              <nuxt-link to="signup" tag="a" class="button is-success">
-                <strong>Sign up</strong>
+              <nuxt-link to="/signup" tag="a" class="button is-success">
+                <strong>Créer un compte</strong>
               </nuxt-link>
-              <nuxt-link to="login" tag="a" class="button is-light">Log in</nuxt-link>
+              <nuxt-link to="/login" tag="a" class="button is-light">Connexion</nuxt-link>
             </div>
           </div>
-          <div class="navbar-item has-dropdown is-hoverable" v-else>
-            <a class="navbar-link">Welcome {{username}}</a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item" @click="toastComingSoon">Articles favories</a>
-              <a class="navbar-item" @click="toastComingSoon">Évenements</a>
-              <hr class="navbar-divider" />
-              <a class="navbar-item" @click="logout">Logout</a>
+          <div class="navbar-item" v-else>
+            <div class="buttons">
+              <nuxt-link to="/account" tag="a" class="button is-light">Mon compte</nuxt-link>
+              <a class="button is-dark" @click="logoutHandler">
+                <span class="icon">
+                  <i class="fas fa-sign-out-alt"></i>
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -77,6 +77,11 @@ export default {
   methods: {
     toastComingSoon() {
       this.$toast.global.comingSoon();
+    },
+    logoutHandler() {
+      this.logout();
+
+      return this.$router.push("/login");
     },
     ...mapMutations({
       logout: "auth/logout"

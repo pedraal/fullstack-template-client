@@ -16,7 +16,7 @@
             <div class="content">
               <p class="heading is-size-4 has-text-centered">{{event.title}}</p>
               <p>
-                <small>{{event.users.length}} participant.e.s</small>
+                <small>{{event.eventattempts.length}} participant.e.s</small>
               </p>
             </div>
             <div class="hovered-content is-flex">
@@ -38,7 +38,7 @@
                 </no-ssr>
 
                 <p class="has-text-centered">
-                  <button class="button is-danger is-inverted" @click="attempt">Participer</button>
+                  <button class="button is-danger is-inverted" @click="attempt(event)">Participer</button>
                 </p>
               </div>
             </div>
@@ -69,21 +69,68 @@ export default {
     events() {
       return this.$store.getters["events/list"];
     },
-    username() {
-      return this.$store.getters["auth/username"];
+    user() {
+      return this.$store.getters["auth/user"];
     }
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
-    attempt() {
-      if (!this.username) {
+    async attempt(event) {
+      if (!this.user) {
         return this.$toast.error(
           "Vous devez vous connecter pour accèder à cette fonctionnalité"
         );
       }
-      return this.$toast.global.comingSoon();
+      try {
+        let response = await strapi.request("post", "/graphql", {
+          data: {
+            query: `mutation {
+                      createEventattempt(
+                        input: {
+                          data: {
+                            user: "${this.user._id}"
+                            event: "${event.id}"
+                            checker: "${this.user._id}${event.id}"
+                            }
+                          }
+                        ){
+                          eventattempt {
+                            id
+                            user {
+                              username
+                              email
+                            }
+                            event {
+                              title
+                              location
+                              date
+                              description
+                            }
+                            checker
+                          }
+                        }
+                      }`
+          }
+        });
+        if (response.errors) {
+          if (response.errors[0].extensions.exception.code === 11000) {
+            return this.$toast.success(
+              `Il semblerait que vous êtes déjà inscrit à ${event.title}.`
+            );
+          } else {
+            throw new Error();
+          }
+        }
+        return this.$toast.success(
+          `Votre participation à ${event.title} à bien été prise en compte!`
+        );
+      } catch (e) {
+        return this.$toast.error(
+          "Oups...une erreur a eu lieu. Veuillez réessayer ultérieurement."
+        );
+      }
     }
   },
   pageTransition: {
@@ -101,7 +148,10 @@ export default {
               description
               date
               location
-              users{username}
+              eventattempts{
+                _id
+              }
+                
               thumbnail {
                 url
               }
@@ -111,6 +161,7 @@ export default {
       }
     });
     response.data.events.forEach(event => {
+      event.thumbnail.url = apiUrl + event.thumbnail.url;
       store.commit("events/add", {
         id: event.id,
         ...event

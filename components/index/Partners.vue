@@ -5,7 +5,7 @@
         class="heading has-text-centered"
         data-aos="fade-right"
       >Nous travaillons ensemble avec pour objectif commun</p>
-      <h3 class="title has-text-centered" data-aos="fade-up">vous satisfaire!</h3>
+      <h3 class="title has-text-centered" data-aos="fade-up">rendre le monde meilleur!</h3>
       <div class="level">
         <div class="level-item" data-aos="flip-left">
           <div class="image">

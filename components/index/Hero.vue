@@ -46,7 +46,7 @@
         <div class="columns">
           <nuxt-link
             tag="article"
-            :to="{ name: 'publication-id', params: { id: publication.id }}"
+            :to="{ name: 'publications-id', params: { id: publication.id }}"
             v-for="publication in publications.slice(0,3)"
             :key="publication.id"
             class="column is-4"
@@ -65,7 +65,7 @@
             </div>
           </nuxt-link>
         </div>
-        <p class="has-text-centered" style="margin-top:-40px">
+        <p class="has-text-centered publicationsLink">
           <nuxt-link tag="a" class="has-text-danger" to="/publications">Voir nos autres publications</nuxt-link>
         </p>
       </div>
@@ -106,6 +106,10 @@ export default {
     }
   }
 }
+.publicationsLink {
+  margin-top: -40px;
+}
+
 @media screen and (max-width: 769px) {
   .hero {
     .hero-body {
@@ -113,6 +117,9 @@ export default {
         width: 130px;
       }
     }
+  }
+  .publicationsLink {
+    margin-top: -20px;
   }
 }
 
@@ -122,9 +129,7 @@ export default {
     top: -80px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    // &:hover {
-    //   top: -100px;
-    // }
+
     .wrapper {
       width: 80%;
       margin: 0 auto;

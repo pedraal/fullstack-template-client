@@ -14,10 +14,10 @@
         <div class="field has-text-centered is-flex">
           <div class="field has-addons">
             <p class="control">
-              <input class="input" type="tel" placeholder="Votre email" />
+              <input class="input" v-model="subscriberEmail" type="email" placeholder="Votre email" />
             </p>
             <p class="control">
-              <button class="button is-danger">Envoyer</button>
+              <button class="button is-danger" @click="createSubscriber">Envoyer</button>
             </p>
           </div>
         </div>
@@ -62,10 +62,35 @@
 </template>
 
 <script>
+import Strapi from "strapi-sdk-javascript/build/main";
+const apiUrl = process.env.API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
+
+import validator from "validator";
+
 export default {
+  data() {
+    return {
+      subscriberEmail: ""
+    };
+  },
   methods: {
     scrollTop() {
       return window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    createSubscriber() {
+      if (!validator.isEmail(this.subscriberEmail)) {
+        this.subscriberEmail = "";
+        return this.$toast.error("Veuillez fournir une adresse mail valide");
+      }
+      strapi.request("post", "/subscribers", {
+        data: {
+          email: this.subscriberEmail
+        }
+      });
+      this.subscriberEmail = "";
+
+      return this.$toast.success("Inscription à la newsletter pris en compte!");
     }
   }
 };

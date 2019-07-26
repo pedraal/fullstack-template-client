@@ -24,7 +24,9 @@ export const actions = {
               title
               content
               createdAt
-              type
+              publicationtype{
+                type
+              }
               author
               image {
                 url
@@ -35,6 +37,7 @@ export const actions = {
       }
     });
     response.data.publications.forEach(publication => {
+      publication.image.url = apiUrl + publication.image.url;
       commit("publications/add", {
         id: publication.id,
         ...publication
