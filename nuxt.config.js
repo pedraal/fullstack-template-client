@@ -15,7 +15,7 @@ module.exports = {
         hid: "description",
         name: "description",
         content:
-          "Site web démonstration basé sur une entreprise fictive tirée de la série Mr Robot, Ecorp"
+          "Site web démonstration basé sur une entreprise fictive tirée de la série Mr Robot, Ecorp."
       },
       {
         hid: "og:image",
@@ -26,6 +26,12 @@ module.exports = {
         hid: "og:title",
         name: "og:title",
         content: "ECorp"
+      },
+      {
+        hid: "og:description",
+        name: "og:description",
+        content:
+          "Site web démonstration basé sur une entreprise fictive tirée de la série Mr Robot, Ecorp."
       }
     ],
     link: [
