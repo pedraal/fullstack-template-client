@@ -24,6 +24,7 @@
         {{publication.content}}
       </p>
       <div class="comment-box">
+        <h4 class="title is-size-4 has-text-centered">Commentaires</h4>
         <div class="comment-list">
           <div class="media" v-for="comment in publication.comments" :key="comment.id">
             <div class="media-content">
