@@ -30,11 +30,32 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: "E Corp",
+    title: "ECorp",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "Nuxt.js project" }
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Site web démonstration basé sur une entreprise fictive tirée de la série Mr Robot, Ecorp."
+      },
+      {
+        hid: "og:image",
+        name: "og:image",
+        content: "/images/Ecorplogo-black.png"
+      },
+      {
+        hid: "og:title",
+        name: "og:title",
+        content: "ECorp"
+      },
+      {
+        hid: "og:description",
+        name: "og:description",
+        content:
+          "Site web démonstration basé sur une entreprise fictive tirée de la série Mr Robot, Ecorp."
+      }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
