@@ -1,3 +1,26 @@
+import Strapi from "strapi-sdk-javascript/build/main";
+import { cpus } from "os";
+const apiUrl = process.env.API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
+
+let dynamicRoutes = async () => {
+  const response = await strapi.request("post", "/graphql", {
+    data: {
+      query: `query {
+            publications {
+              id
+            }
+          }
+          `
+    }
+  });
+  let routes = [];
+  response.data.publications.forEach(publication => {
+    routes.push("/publications/" + publication.id);
+  });
+  return routes;
+};
+
 module.exports = {
   mode: "universal",
   server: {
@@ -100,5 +123,8 @@ module.exports = {
         });
       });
     }
+  },
+  generate: {
+    routes: dynamicRoutes
   }
 };
